@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Deploy Toplogy1') {
             steps{
-                    sh  'kne create datacenter-toplogy'
+                    sh  'kne create datacenter-topology'
             }
         }
     }
