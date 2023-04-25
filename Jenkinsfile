@@ -9,11 +9,6 @@ pipeline {
         RELEASE     = '15.0'
     }
     stages{
-        stage('Deploy Kubernetes Network Emulation'){
-            steps{
-                sh 'kubectl get deployments -n srlinux-controller'
-            }
-        }
         stage('Git Pull - Topology1') {
             steps{
             cleanWs()
