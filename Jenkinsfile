@@ -12,7 +12,7 @@ pipeline {
         stage('Deploy Kubernetes Network Emulation'){
             steps{
                 cleanWs()
-                sh 'kubectl get deployments -n srlinux-controller'
+                sh 'kubectl get deployments --all-namespaces'
                 sh 'kubectl get pods --all-namespaces'
             }
         }
