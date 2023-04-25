@@ -1,0 +1,61 @@
+#This topology consists of two Nokia SR Linux IXR-6e nodes running 22.6.4 release and connected with a single link over ethernet-1/1 interfaces.
+# Each of the nodes comes up with a startup config which is sourced from srl-opeconfig.cfg.json file;
+# the startup config contains a self-signed TLS cert and has gnmi, gnoi, gribi, p4rt services enabled
+#
+# Read more about this topology at http://learn.srlinux.dev/tutorials/infrastructure/kne/srl-with-oc-services/
+
+name: "datacenter-topology"
+nodes: {
+    name: "router1"
+    vendor: NOKIA
+    config:{
+        image: "ghcr.io/nokia/srlinux"
+        file: "srl1.cli"
+    }
+    services:{
+        key: 22
+        value: {
+            name: "ssh"
+            inside: 22
+            outside: 22
+        }
+    }
+    interfaces: {
+        key: "e1-1"
+        value: {
+            name: "ethernet-1/1"
+        }
+    }
+}
+
+nodes: {
+    name: "router2"
+    vendor: NOKIA
+    config:{
+        image: "ghcr.io/nokia/srlinux"
+        file: "srl2.cli"
+    }
+    services:{
+        key: 22
+        value: {
+            name: "ssh"
+            inside: 22
+            outside: 22
+        }
+    }
+    interfaces: {
+        key: "e1-1"
+        value: {
+            name: "ethernet-1/1"
+        }
+    }
+}
+
+links: {
+    a_node: "router1"
+    a_int: "e1-1"
+    z_node: "router2"
+    z_int: "e1-1"
+}
+
+
