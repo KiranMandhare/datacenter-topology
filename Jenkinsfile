@@ -11,19 +11,6 @@ pipeline {
     stages{
         stage('Deploy Kubernetes Network Emulation'){
             steps{
-                cleanWs()
-                script {
-                   VERSION_NUMBER = "${RELEASE}." +currentBuild.number
-                   currentBuild.displayName = "${VERSION_NUMBER}"
-                }
-                checkout([$class: 'GitSCM',
-                    branches: [[name: '*/test']],
-                    doGenerateSubmoduleConfigurations: false,
-                    extensions: [[$class: 'CleanCheckout']],
-                    submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: '830e2b5c-4676-42b7-8aff-3551e02073e1', url: 'https://github.com/openconfig/kne.git']]
-                ])
-                sh 'kne deploy deploy/kne/kind-bridge.yaml'
                 sh 'kind get clusters'
                 sh 'kubectl get deployments -n srlinux-controller'
             }
