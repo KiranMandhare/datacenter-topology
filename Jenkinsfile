@@ -11,7 +11,6 @@ pipeline {
     stages{
         stage('Deploy Kubernetes Network Emulation'){
             steps{
-                sh 'kind get clusters'
                 sh 'kubectl get deployments -n srlinux-controller'
             }
         }
