@@ -9,13 +9,6 @@ pipeline {
         RELEASE     = '15.0'
     }
     stages{
-        stage('Deploy Kubernetes Network Emulation'){
-            steps{
-                cleanWs()
-                sh 'kubectl get deployments --all-namespaces'
-                sh 'kubectl get pods --all-namespaces'
-            }
-        }
         stage('Git Pull - Topology1') {
             steps{
             cleanWs()
