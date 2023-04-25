@@ -17,7 +17,7 @@ pipeline {
                    currentBuild.displayName = "${VERSION_NUMBER}"
             }
             checkout([$class: 'GitSCM',
-                    branches: [[name: '*/test']],
+                    branches: [[name: '*/main']],
                     doGenerateSubmoduleConfigurations: false,
                     extensions: [[$class: 'CleanCheckout']],
                     submoduleCfg: [],
@@ -25,7 +25,7 @@ pipeline {
             ])
             }
         }
-        stage('Deploy Toplogy1') {
+        stage('Deploy Toplogy-1') {
             steps{
                     sh  'kne create datacenter-toplogy'
             }
